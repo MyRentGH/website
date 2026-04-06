@@ -2,11 +2,11 @@ import { FadeUp } from "@/components/fade-up";
 
 export default function CTA() {
   return (
-    <section className="py-20 px-12" style={{ background: "var(--cream)" }}>
+    <section className="py-20 px-12 max-[900px]:py-16 max-[900px]:px-6" style={{ background: "var(--cream)" }}>
       <div className="max-w-[800px] mx-auto">
         <FadeUp>
         <div
-          className="relative text-center rounded-3xl px-[60px] py-20 overflow-hidden"
+          className="relative text-center rounded-3xl px-[60px] max-[720px]:px-8 py-20 max-[720px]:py-14 overflow-hidden"
           style={{ background: "var(--navy)" }}
         >
           {/* Radial glow */}
@@ -26,8 +26,8 @@ export default function CTA() {
               Get started today
             </div>
             <h2
-              className="text-[40px] font-normal leading-[1.2] mb-4 text-white"
-              style={{ fontFamily: "var(--font-dm-serif)" }}
+              className="text-[40px] font-normal leading-[1.2] mb-4"
+              style={{ fontFamily: "var(--font-dm-serif)", color: "#fff" }}
             >
               Your properties deserve<br />better than WhatsApp
             </h2>

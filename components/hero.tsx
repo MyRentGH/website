@@ -61,7 +61,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-[2] mx-auto flex w-full max-w-[1200px] flex-1 items-center gap-20 px-12 pb-20 pt-[120px] max-[900px]:flex-col max-[900px]:gap-12 max-[900px]:px-6 max-[900px]:pb-[60px] max-[900px]:pt-[100px]">
+      <div className="relative z-[2] mx-auto flex w-full max-w-[1200px] flex-1 items-center gap-20 px-12 pb-20  max-[900px]:flex-col max-[900px]:gap-12 max-[900px]:px-6 max-[900px]:pb-[60px] max-[900px]:pt-[100px]">
         <div className="flex-1">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[rgba(201,147,58,0.3)] bg-[rgba(201,147,58,0.15)] px-[14px] py-[5px] text-[12px] font-semibold uppercase tracking-[0.06em] text-[var(--gold-light)]">
             <span className="h-[6px] w-[6px] rounded-full bg-[var(--gold)]" />

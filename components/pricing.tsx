@@ -72,15 +72,15 @@ import { FadeUp } from "@/components/fade-up";
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-[100px] px-12" style={{ background: "var(--navy)" }}>
+    <section id="pricing" className="py-[100px] px-12 max-[900px]:py-16 max-[900px]:px-6" style={{ background: "var(--navy)" }}>
       <div className="max-w-[1200px] mx-auto">
         <FadeUp className="text-center mb-14">
           <div className="text-xs font-semibold uppercase tracking-[0.08em] mb-4" style={{ color: "var(--gold)" }}>
             Pricing
           </div>
           <h2
-            className="text-[40px] font-normal leading-[1.2] mb-4 text-white"
-            style={{ fontFamily: "var(--font-dm-serif)" }}
+            className="text-[40px] font-normal leading-[1.2] mb-4"
+            style={{ fontFamily: "var(--font-dm-serif)", color: "#fff" }}
           >
             Simple, honest pricing
           </h2>
@@ -89,7 +89,7 @@ export default function Pricing() {
           </p>
         </FadeUp>
 
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-3 gap-5 max-[900px]:grid-cols-1">
           {plans.map((plan, i) => (
             <FadeUp key={plan.label} delay={i * 0.1}>
             <div

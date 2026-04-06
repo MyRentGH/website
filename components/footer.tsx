@@ -43,14 +43,14 @@ function LinkCol({ title, links }: { title: string; links: { label: string; href
 export default function Footer() {
   return (
     <footer
-      className="px-12 pt-16 pb-8"
+      className="px-12 max-[900px]:px-6 pt-16 pb-8"
       style={{
         background: "var(--navy)",
         borderTop: "1px solid rgba(255,255,255,0.06)",
       }}
     >
       <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-12 mb-12">
+        <div className="grid grid-cols-[2fr_1fr_1fr_1fr] max-[900px]:grid-cols-2 max-[720px]:grid-cols-1 gap-12 max-[720px]:gap-8 mb-12">
           {/* Brand */}
           <div>
             <a
@@ -72,7 +72,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="flex items-center justify-between pt-6 text-xs"
+          className="flex items-center justify-between max-[720px]:flex-col max-[720px]:items-start max-[720px]:gap-3 pt-6 text-xs"
           style={{
             borderTop: "1px solid rgba(255,255,255,0.07)",
             color: "rgba(255,255,255,0.3)",

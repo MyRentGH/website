@@ -2,9 +2,9 @@ import { FadeUp } from "@/components/fade-up";
 
 export default function Agents() {
   return (
-    <section id="agents" className="py-[100px] px-12" style={{ background: "var(--cream)" }}>
+    <section id="agents" className="py-[100px] px-12 max-[900px]:py-16 max-[900px]:px-6" style={{ background: "var(--cream)" }}>
       <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-2 gap-16 items-start max-[900px]:grid-cols-1 max-[900px]:gap-10">
           {/* Left */}
           <FadeUp>
             <div

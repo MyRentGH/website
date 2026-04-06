@@ -247,7 +247,7 @@ export default function Features() {
   const tab = tabs.find((t) => t.id === activeTab)!;
 
   return (
-    <section id="features" className="px-12 py-[100px] max-[768px]:px-6" style={{ background: "var(--cream)" }}>
+    <section id="features" className="px-12 py-[100px] max-[900px]:px-6 max-[900px]:py-16" style={{ background: "var(--cream)" }}>
       <div className="mx-auto max-w-[1200px]">
 
         {/* Header */}
@@ -285,7 +285,7 @@ export default function Features() {
         </motion.div>
 
         {/* Panel: 2-col grid, feature list left, navy visual right */}
-        <div className="grid grid-cols-2 items-center gap-[60px] max-[768px]:grid-cols-1">
+        <div className="grid grid-cols-2 items-center gap-[60px] max-[900px]:grid-cols-1 max-[900px]:gap-8">
 
           {/* Left: feature list */}
           <motion.div {...fadeUp(0.15)} className="flex flex-col gap-5">
@@ -307,7 +307,7 @@ export default function Features() {
 
           {/* Right: navy visual panel */}
           <motion.div {...fadeUp(0.25)}
-            className="feature-visual relative overflow-hidden rounded-[20px] p-8"
+            className="feature-visual relative overflow-hidden rounded-[20px] p-8 max-[900px]:p-6"
             style={{
               background: "var(--navy)",
               minHeight: 480,
@@ -324,8 +324,8 @@ export default function Features() {
               }}
             />
 
-            {/* Mock cards — absolute at top */}
-            <div className="absolute left-8 right-8 top-7">
+            {/* Mock cards — absolute at top on desktop, static on mobile */}
+            <div className="absolute left-8 right-8 top-7 max-[900px]:relative max-[900px]:left-0 max-[900px]:right-0 max-[900px]:top-0 max-[900px]:mb-6">
               {tab.mock}
             </div>
 
