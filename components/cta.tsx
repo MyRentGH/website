@@ -1,7 +1,10 @@
+import { FadeUp } from "@/components/fade-up";
+
 export default function CTA() {
   return (
     <section className="py-20 px-12" style={{ background: "var(--cream)" }}>
       <div className="max-w-[800px] mx-auto">
+        <FadeUp>
         <div
           className="relative text-center rounded-3xl px-[60px] py-20 overflow-hidden"
           style={{ background: "var(--navy)" }}
@@ -51,6 +54,7 @@ export default function CTA() {
             </div>
           </div>
         </div>
+        </FadeUp>
       </div>
     </section>
   );

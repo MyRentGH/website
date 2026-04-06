@@ -19,6 +19,8 @@ const badges = [
   "GRA compliant",
 ];
 
+import { FadeUp } from "@/components/fade-up";
+
 export default function Compliance() {
   return (
     <section className="py-[100px] px-12" style={{ background: "var(--cream)" }}>
@@ -28,7 +30,7 @@ export default function Compliance() {
           style={{ background: "var(--navy)" }}
         >
           {/* Left */}
-          <div>
+          <FadeUp>
             <div
               className="text-xs font-semibold uppercase tracking-[0.08em] mb-4"
               style={{ color: "var(--gold)" }}
@@ -62,13 +64,13 @@ export default function Compliance() {
                 </div>
               ))}
             </div>
-          </div>
+          </FadeUp>
 
           {/* Right */}
           <div className="flex flex-col gap-4">
-            {laws.map((law) => (
+            {laws.map((law, i) => (
+              <FadeUp key={law.title} delay={(i + 1) * 0.1}>
               <div
-                key={law.title}
                 className="p-5 rounded-xl"
                 style={{
                   background: "rgba(255,255,255,0.06)",
@@ -80,6 +82,7 @@ export default function Compliance() {
                   {law.desc}
                 </div>
               </div>
+              </FadeUp>
             ))}
           </div>
         </div>
