@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "rentgh-website",
+      "runtimeExecutable": "/bin/bash",
+      "runtimeArgs": ["-c", "export PATH=/Users/ghaff/.nvm/versions/node/v25.7.0/bin:$PATH && npm run dev"],
+      "port": 3000,
+      "autoPort": true
+    }
+  ]
+}
