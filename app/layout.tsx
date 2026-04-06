@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   title: "RentGH — Ghana's Property Management Platform",
   description:
     "RentGH replaces cash, WhatsApp, and notebooks with one platform — for landlords, agents, and diaspora property owners across Ghana.",
+  icons: {
+    icon: "/favicon.ico?v=2",
+    shortcut: "/favicon.ico?v=2",
+  },
 };
 
 export default function RootLayout({
