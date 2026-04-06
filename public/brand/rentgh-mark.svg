@@ -1,0 +1,24 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="64" y1="64" x2="448" y2="448" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12314F"/>
+      <stop offset="1" stop-color="#0B2239"/>
+    </linearGradient>
+    <linearGradient id="roof" x1="140" y1="122" x2="372" y2="274" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8B96A"/>
+      <stop offset="1" stop-color="#C9933A"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="24" y="24" width="464" height="464" rx="108" fill="url(#bg)"/>
+  <rect x="60" y="60" width="392" height="392" rx="84" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+
+  <path d="M104 250L256 118L408 250H364L256 157L148 250H104Z" fill="url(#roof)"/>
+  <rect x="156" y="250" width="200" height="162" rx="26" fill="#FFFFFF"/>
+  <rect x="230" y="302" width="52" height="110" rx="14" fill="#C9933A"/>
+
+  <rect x="188" y="286" width="28" height="28" rx="8" fill="#0B2239" opacity="0.08"/>
+  <rect x="296" y="286" width="28" height="28" rx="8" fill="#0B2239" opacity="0.08"/>
+
+  <path d="M374 140L379 151L391 153L382 162L384 174L374 168L364 174L366 162L357 153L369 151L374 140Z" fill="#E8B96A"/>
+</svg>

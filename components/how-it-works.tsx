@@ -23,55 +23,78 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how" className="py-[100px] px-12" style={{ background: "var(--navy)" }}>
-      <div className="max-w-[1200px] mx-auto">
-        <div className="mb-14">
-          <div
-            className="text-xs font-semibold uppercase tracking-[0.08em] mb-4"
-            style={{ color: "var(--gold)" }}
-          >
+    <section id="how" className="px-12 py-[100px] max-[768px]:px-6" style={{ background: "var(--navy)" }}>
+      <div className="mx-auto max-w-[1200px]">
+        <div className="mb-[60px]">
+          <div className="mb-4 text-[12px] font-semibold uppercase tracking-[0.1em]" style={{ color: "var(--gold)" }}>
             How it works
           </div>
           <h2
-            className="text-[40px] font-normal leading-[1.2] mb-4 text-white"
+            className="mb-5 text-[clamp(34px,4vw,52px)] leading-[1.15] tracking-[-0.5px] text-white"
             style={{ fontFamily: "var(--font-dm-serif)" }}
           >
             Simple for everyone<br />involved
           </h2>
-          <p className="text-base font-light max-w-[480px]" style={{ color: "rgba(255,255,255,0.55)" }}>
+          <p className="max-w-[560px] text-[18px] font-light leading-[1.7]" style={{ color: "rgba(255,255,255,0.55)" }}>
             From adding a property to collecting rent — the whole flow takes under 10 minutes to set up.
           </p>
         </div>
 
-        <div className="grid grid-cols-4 gap-5">
-          {steps.map((step, i) => (
-            <div
-              key={step.num}
-              className="relative rounded-2xl p-7"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
-              }}
-            >
+        {/* Steps: seamless connected row, 2px gaps, only outer corners rounded */}
+        <div className="grid grid-cols-4 gap-[2px] max-[768px]:grid-cols-1">
+          {steps.map((step, i) => {
+            const isFirst = i === 0;
+            const isLast = i === steps.length - 1;
+            const radius = isFirst
+              ? "16px 0 0 16px"
+              : isLast
+              ? "0 16px 16px 0"
+              : "0";
+
+            return (
               <div
-                className="text-[11px] font-bold uppercase tracking-[0.08em] mb-5"
-                style={{ color: "var(--gold)" }}
+                key={step.num}
+                className="how-step relative px-7 py-9"
+                style={{
+                  background: "rgba(255,255,255,0.04)",
+                  borderRadius: radius,
+                }}
               >
-                {step.num}
-              </div>
-              <div className="text-base font-semibold text-white mb-3">{step.title}</div>
-              <div className="text-sm font-light leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-                {step.desc}
-              </div>
-              {i < steps.length - 1 && (
-                <div className="absolute top-8 -right-3 z-10">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5">
-                    <path d="M2 6h8M6 2l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                {/* Large decorative step number */}
+                <div
+                  className="mb-5 text-[56px] leading-none"
+                  style={{
+                    fontFamily: "var(--font-dm-serif)",
+                    color: "rgba(201,147,58,0.2)",
+                  }}
+                >
+                  {step.num}
                 </div>
-              )}
-            </div>
-          ))}
+
+                <div className="mb-[10px] text-[17px] font-semibold text-white">
+                  {step.title}
+                </div>
+                <div className="text-[14px] font-light leading-[1.7]" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  {step.desc}
+                </div>
+
+                {/* Arrow connector between steps */}
+                {!isLast && (
+                  <div
+                    className="absolute right-[-14px] top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full"
+                    style={{
+                      background: "var(--navy-mid)",
+                      border: "2px solid rgba(255,255,255,0.1)",
+                    }}
+                  >
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5">
+                      <path d="M2 6h8M6 2l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

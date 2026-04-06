@@ -9,8 +9,8 @@ const problems = [
         <path d="M4 10.5h2" strokeLinecap="round" />
       </svg>
     ),
-    title: "Landlords demand illegal advance payments",
-    desc: "The law caps advance rent at 6 months. Most landlords demand 2–3 years. Enforcement is virtually nonexistent — 73,000 disputes in 2024 alone.",
+    title: "Rent cash flow is hard to predict",
+    desc: "Manual collection and lump-sum expectations can make occupancy and planning harder. RentGH gives landlords and agents clear schedules, automated reminders, and a complete payment trail.",
   },
   {
     iconBg: "#FEF9C3",
@@ -32,7 +32,7 @@ const problems = [
       </svg>
     ),
     title: "Diaspora landlords have zero visibility",
-    desc: "Ghanaians in the UK, US, and Canada own billions in property back home. They rely on family members or agents — with no way to verify what's actually happening.",
+    desc: "Ghanaians in the UK, US, and Canada own properties back home. They rely on family members or agents — with no way to verify what's actually happening.",
   },
 ];
 
@@ -55,8 +55,8 @@ export default function Problem() {
               Ghana&apos;s rental market runs on <em>chaos</em>
             </h2>
             <p className="text-[16px] font-light leading-relaxed" style={{ color: "var(--text-mid)" }}>
-              Cash payments with no records. Verbal leases. WhatsApp reminders. Agents collecting money that never
-              arrives. It doesn&apos;t have to be this way.
+              Cash payments with no records. Verbal leases. WhatsApp reminders. Delayed remittances and unclear
+              handovers. It doesn&apos;t have to be this way.
             </p>
           </div>
 
