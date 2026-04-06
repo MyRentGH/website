@@ -17,7 +17,7 @@
     --sans: var(--font-dm-sans), sans-serif;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
 
   html { scroll-behavior: smooth; }
 
@@ -619,3 +619,40 @@
 
     .feature-panel.active { gap: 20px; }
   }
+
+/* ── Next.js component mobile overrides ── */
+@media (max-width: 900px) {
+  .feature-visual {
+    min-height: auto !important;
+    justify-content: flex-start !important;
+  }
+}
+
+html {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* ── Footer link styles ── */
+.footer-link-item {
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.footer-link-item:hover {
+  color: rgba(255,255,255,0.85);
+}
+
+.footer-bottom-link {
+  color: rgba(255,255,255,0.3);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.footer-bottom-link:hover {
+  color: rgba(255,255,255,0.6);
+}

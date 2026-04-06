@@ -38,17 +38,19 @@ const features = [
   },
 ];
 
+import { FadeUp } from "@/components/fade-up";
+
 export default function Diaspora() {
   return (
     <section
       id="diaspora"
-      className="py-[100px] px-12"
+      className="py-[100px] px-12 max-[900px]:py-16 max-[900px]:px-6"
       style={{ background: "var(--navy)" }}
     >
       <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-2 gap-16 items-center max-[900px]:grid-cols-1 max-[900px]:gap-10">
           {/* Left */}
-          <div>
+          <FadeUp>
             <div
               className="text-xs font-semibold uppercase tracking-[0.08em] mb-4"
               style={{ color: "var(--gold)" }}
@@ -56,8 +58,8 @@ export default function Diaspora() {
               For diaspora landlords
             </div>
             <h2
-              className="text-[40px] font-normal leading-[1.2] mb-4 text-white"
-              style={{ fontFamily: "var(--font-dm-serif)" }}
+              className="text-[40px] font-normal leading-[1.2] mb-4"
+              style={{ fontFamily: "var(--font-dm-serif)", color: "#fff" }}
             >
               Own property in Ghana.<br />Live <em>anywhere</em>.
             </h2>
@@ -80,10 +82,10 @@ export default function Diaspora() {
                 </div>
               ))}
             </div>
-          </div>
+          </FadeUp>
 
           {/* Right — report card */}
-          <div>
+          <FadeUp delay={0.2}>
             <div
               className="rounded-2xl overflow-hidden"
               style={{ border: "1px solid rgba(255,255,255,0.1)" }}
@@ -130,7 +132,7 @@ export default function Diaspora() {
                 ))}
               </div>
             </div>
-          </div>
+          </FadeUp>
         </div>
       </div>
     </section>

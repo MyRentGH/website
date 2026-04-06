@@ -1,6 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { motion, type Easing } from "framer-motion";
+
+const EASE: Easing = "easeOut";
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-60px" as const },
+  transition: { duration: 0.6, ease: EASE, delay },
+});
 
 type FeatureItem = { title: string; desc: string; icon: React.ReactNode };
 type Tab = {
@@ -238,11 +247,11 @@ export default function Features() {
   const tab = tabs.find((t) => t.id === activeTab)!;
 
   return (
-    <section id="features" className="px-12 py-[100px] max-[768px]:px-6" style={{ background: "var(--cream)" }}>
+    <section id="features" className="px-12 py-[100px] max-[900px]:px-6 max-[900px]:py-16" style={{ background: "var(--cream)" }}>
       <div className="mx-auto max-w-[1200px]">
 
         {/* Header */}
-        <div className="mb-16 text-center">
+        <motion.div {...fadeUp()} className="mb-16 text-center">
           <div className="mb-4 text-[12px] font-semibold uppercase tracking-[0.1em]" style={{ color: "var(--gold)" }}>
             Features
           </div>
@@ -255,10 +264,10 @@ export default function Features() {
           <p className="mx-auto max-w-[560px] text-[18px] font-light leading-[1.7]" style={{ color: "var(--text-mid)" }}>
             Built specifically for Ghana — not a global tool adapted for Africa, but a platform designed from the ground up for how property works here.
           </p>
-        </div>
+        </motion.div>
 
         {/* Tabs — individual pill buttons */}
-        <div className="mb-12 flex flex-wrap justify-center gap-2">
+        <motion.div {...fadeUp(0.1)} className="mb-12 flex flex-wrap justify-center gap-2">
           {tabs.map((t) => (
             <button
               key={t.id}
@@ -273,13 +282,13 @@ export default function Features() {
               {t.label}
             </button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Panel: 2-col grid, feature list left, navy visual right */}
-        <div className="grid grid-cols-2 items-center gap-[60px] max-[768px]:grid-cols-1">
+        <div className="grid grid-cols-2 items-center gap-[60px] max-[900px]:grid-cols-1 max-[900px]:gap-8">
 
           {/* Left: feature list */}
-          <div className="flex flex-col gap-5">
+          <motion.div {...fadeUp(0.15)} className="flex flex-col gap-5">
             {tab.items.map((item) => (
               <div key={item.title} className="flex items-start gap-4">
                 <div
@@ -294,11 +303,11 @@ export default function Features() {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Right: navy visual panel */}
-          <div
-            className="feature-visual relative overflow-hidden rounded-[20px] p-8"
+          <motion.div {...fadeUp(0.25)}
+            className="feature-visual relative overflow-hidden rounded-[20px] p-8 max-[900px]:p-6"
             style={{
               background: "var(--navy)",
               minHeight: 480,
@@ -315,8 +324,8 @@ export default function Features() {
               }}
             />
 
-            {/* Mock cards — absolute at top */}
-            <div className="absolute left-8 right-8 top-7">
+            {/* Mock cards — absolute at top on desktop, static on mobile */}
+            <div className="absolute left-8 right-8 top-7 max-[900px]:relative max-[900px]:left-0 max-[900px]:right-0 max-[900px]:top-0 max-[900px]:mb-6">
               {tab.mock}
             </div>
 
@@ -333,7 +342,7 @@ export default function Features() {
               </div>
               <div className="text-[14px]" style={{ color: "rgba(255,255,255,0.5)" }}>{tab.visualSub}</div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

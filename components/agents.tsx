@@ -1,10 +1,12 @@
+import { FadeUp } from "@/components/fade-up";
+
 export default function Agents() {
   return (
-    <section id="agents" className="py-[100px] px-12" style={{ background: "var(--cream)" }}>
+    <section id="agents" className="py-[100px] px-12 max-[900px]:py-16 max-[900px]:px-6" style={{ background: "var(--cream)" }}>
       <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-2 gap-16 items-start max-[900px]:grid-cols-1 max-[900px]:gap-10">
           {/* Left */}
-          <div>
+          <FadeUp>
             <div
               className="text-xs font-semibold uppercase tracking-[0.08em] mb-4"
               style={{ color: "var(--navy)" }}
@@ -27,11 +29,12 @@ export default function Agents() {
             >
               Join as an agent — free
             </a>
-          </div>
+          </FadeUp>
 
           {/* Right */}
           <div className="flex flex-col gap-5">
             {/* Free badge card */}
+            <FadeUp delay={0.1}>
             <div
               className="flex items-start gap-4 p-6 rounded-2xl"
               style={{ background: "var(--navy)", border: "1px solid rgba(255,255,255,0.08)" }}
@@ -55,8 +58,10 @@ export default function Agents() {
                 </div>
               </div>
             </div>
+            </FadeUp>
 
             {/* Testimonial */}
+            <FadeUp delay={0.2}>
             <div
               className="p-6 rounded-2xl"
               style={{
@@ -87,6 +92,7 @@ export default function Agents() {
                 </div>
               </div>
             </div>
+            </FadeUp>
           </div>
         </div>
       </div>

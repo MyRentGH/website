@@ -21,30 +21,35 @@ const steps = [
   },
 ];
 
+import { FadeUp } from "@/components/fade-up";
+
 export default function HowItWorks() {
   return (
-    <section id="how" className="px-12 py-[100px] max-[768px]:px-6" style={{ background: "var(--navy)" }}>
+    <section id="how" className="overflow-hidden px-12 py-[100px] max-[900px]:px-6 max-[900px]:py-16" style={{ background: "var(--navy)" }}>
       <div className="mx-auto max-w-[1200px]">
-        <div className="mb-[60px]">
+        <FadeUp className="mb-[60px]">
           <div className="mb-4 text-[12px] font-semibold uppercase tracking-[0.1em]" style={{ color: "var(--gold)" }}>
             How it works
           </div>
           <h2
-            className="mb-5 text-[clamp(34px,4vw,52px)] leading-[1.15] tracking-[-0.5px] text-white"
-            style={{ fontFamily: "var(--font-dm-serif)" }}
+            className="mb-5 text-[clamp(34px,4vw,52px)] leading-[1.15] tracking-[-0.5px]"
+            style={{ fontFamily: "var(--font-dm-serif)", color: "#fff" }}
           >
             Simple for everyone<br />involved
           </h2>
           <p className="max-w-[560px] text-[18px] font-light leading-[1.7]" style={{ color: "rgba(255,255,255,0.55)" }}>
             From adding a property to collecting rent — the whole flow takes under 10 minutes to set up.
           </p>
-        </div>
+        </FadeUp>
 
         {/* Steps: seamless connected row, 2px gaps, only outer corners rounded */}
-        <div className="grid grid-cols-4 gap-[2px] max-[768px]:grid-cols-1">
+        <div className="grid grid-cols-4 gap-[2px] max-[900px]:grid-cols-2 max-[720px]:grid-cols-1">
           {steps.map((step, i) => {
             const isFirst = i === 0;
             const isLast = i === steps.length - 1;
+            // Desktop: only outer horizontal corners rounded
+            // Mobile 2-col: top-left/top-right for row 1, bottom-left/bottom-right for row 2
+            // Mobile 1-col: all fully rounded
             const radius = isFirst
               ? "16px 0 0 16px"
               : isLast
@@ -52,8 +57,9 @@ export default function HowItWorks() {
               : "0";
 
             return (
-              <div
+              <FadeUp
                 key={step.num}
+                delay={i * 0.1}
                 className="how-step relative px-7 py-9"
                 style={{
                   background: "rgba(255,255,255,0.04)",
@@ -78,10 +84,10 @@ export default function HowItWorks() {
                   {step.desc}
                 </div>
 
-                {/* Arrow connector between steps */}
+                {/* Arrow connector between steps — hidden on mobile */}
                 {!isLast && (
                   <div
-                    className="absolute right-[-14px] top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full"
+                    className="absolute right-[-14px] top-1/2 z-10 hidden h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full min-[900px]:flex"
                     style={{
                       background: "var(--navy-mid)",
                       border: "2px solid rgba(255,255,255,0.1)",
@@ -92,7 +98,7 @@ export default function HowItWorks() {
                     </svg>
                   </div>
                 )}
-              </div>
+              </FadeUp>
             );
           })}
         </div>

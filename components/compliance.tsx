@@ -19,16 +19,18 @@ const badges = [
   "GRA compliant",
 ];
 
+import { FadeUp } from "@/components/fade-up";
+
 export default function Compliance() {
   return (
-    <section className="py-[100px] px-12" style={{ background: "var(--cream)" }}>
+    <section className="py-[100px] px-12 max-[900px]:py-16 max-[900px]:px-6" style={{ background: "var(--cream)" }}>
       <div className="max-w-[1200px] mx-auto">
         <div
-          className="rounded-3xl p-16 grid grid-cols-2 gap-16 items-center"
+          className="rounded-3xl p-16 max-[900px]:p-8 max-[720px]:p-6 grid grid-cols-2 max-[900px]:grid-cols-1 gap-16 max-[900px]:gap-10 items-center"
           style={{ background: "var(--navy)" }}
         >
           {/* Left */}
-          <div>
+          <FadeUp>
             <div
               className="text-xs font-semibold uppercase tracking-[0.08em] mb-4"
               style={{ color: "var(--gold)" }}
@@ -36,8 +38,8 @@ export default function Compliance() {
               Legal compliance
             </div>
             <h2
-              className="text-[40px] font-normal leading-[1.2] mb-4 text-white"
-              style={{ fontFamily: "var(--font-dm-serif)" }}
+              className="text-[40px] font-normal leading-[1.2] mb-4"
+              style={{ fontFamily: "var(--font-dm-serif)", color: "#fff" }}
             >
               Built on Ghana&apos;s<br />rental laws
             </h2>
@@ -62,13 +64,13 @@ export default function Compliance() {
                 </div>
               ))}
             </div>
-          </div>
+          </FadeUp>
 
           {/* Right */}
           <div className="flex flex-col gap-4">
-            {laws.map((law) => (
+            {laws.map((law, i) => (
+              <FadeUp key={law.title} delay={(i + 1) * 0.1}>
               <div
-                key={law.title}
                 className="p-5 rounded-xl"
                 style={{
                   background: "rgba(255,255,255,0.06)",
@@ -80,6 +82,7 @@ export default function Compliance() {
                   {law.desc}
                 </div>
               </div>
+              </FadeUp>
             ))}
           </div>
         </div>

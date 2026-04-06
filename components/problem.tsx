@@ -36,12 +36,14 @@ const problems = [
   },
 ];
 
+import { FadeUp } from "@/components/fade-up";
+
 export default function Problem() {
   return (
-    <section id="problem" className="py-[100px] px-12" style={{ background: "var(--cream)" }}>
+    <section id="problem" className="py-[100px] px-12 max-[900px]:py-16 max-[900px]:px-6" style={{ background: "var(--cream)" }}>
       <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-2 gap-16 items-start">
-          <div>
+        <div className="grid grid-cols-2 gap-16 items-start max-[900px]:grid-cols-1 max-[900px]:gap-10">
+          <FadeUp>
             <div
               className="text-xs font-semibold uppercase tracking-[0.08em] mb-4"
               style={{ color: "var(--navy)" }}
@@ -58,12 +60,12 @@ export default function Problem() {
               Cash payments with no records. Verbal leases. WhatsApp reminders. Delayed remittances and unclear
               handovers. It doesn&apos;t have to be this way.
             </p>
-          </div>
+          </FadeUp>
 
           <div className="flex flex-col gap-4">
-            {problems.map((p) => (
+            {problems.map((p, i) => (
+              <FadeUp key={p.title} delay={(i + 1) * 0.1}>
               <div
-                key={p.title}
                 className="flex items-start gap-4 p-5 rounded-2xl"
                 style={{
                   background: "#fff",
@@ -86,6 +88,7 @@ export default function Problem() {
                   </div>
                 </div>
               </div>
+              </FadeUp>
             ))}
           </div>
         </div>
