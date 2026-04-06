@@ -3,15 +3,41 @@
 import { useState } from "react";
 
 type FeatureItem = { title: string; desc: string; icon: React.ReactNode };
-type Tab = { id: string; label: string; items: FeatureItem[]; visual: React.ReactNode; visualLabel: string; visualTitle: string; visualSub: string };
+type Tab = {
+  id: string;
+  label: string;
+  items: FeatureItem[];
+  mock: React.ReactNode;
+  visualLabel: string;
+  visualTitle: string;
+  visualSub: string;
+};
 
-const GoldIcon = ({ children }: { children: React.ReactNode }) => (
+// Shared card primitive inside the navy visual panel
+const FvCard = ({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) => (
   <div
-    className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
-    style={{ background: "rgba(201,147,58,0.12)" }}
+    style={{
+      background: "rgba(255,255,255,0.08)",
+      border: "1px solid rgba(255,255,255,0.06)",
+      borderRadius: 10,
+      padding: 14,
+      marginBottom: 10,
+      ...style,
+    }}
   >
     {children}
   </div>
+);
+
+const FvRow = ({ label, value, valueStyle }: { label: string; value: React.ReactNode; valueStyle?: React.CSSProperties }) => (
+  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+    <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>{label}</span>
+    <span style={{ fontSize: 11, fontWeight: 600, color: "#fff", ...valueStyle }}>{value}</span>
+  </div>
+);
+
+const FvBadge = ({ children, color, bg }: { children: string; color: string; bg: string }) => (
+  <span style={{ fontSize: 9, fontWeight: 700, padding: "2px 8px", borderRadius: 99, background: bg, color }}>{children}</span>
 );
 
 const tabs: Tab[] = [
@@ -21,7 +47,7 @@ const tabs: Tab[] = [
     items: [
       {
         title: "MoMo, card, and bank payments",
-        desc: "Tenants pay however they prefer. MTN MoMo, Telecel Cash, Visa, Mastercard, or bank transfer — all via Paystack's secure checkout.",
+        desc: "Tenants pay however they prefer. MTN MoMo, Telecel Cash, Visa, Mastercard, or bank transfer — all via a secure payment checkout.",
         icon: <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="#C9933A" strokeWidth="1.5"><rect x="1" y="3" width="14" height="10" rx="1.5" /><path d="M1 7h14M4 10.5h2" strokeLinecap="round" /></svg>,
       },
       {
@@ -40,30 +66,33 @@ const tabs: Tab[] = [
         icon: <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="#C9933A" strokeWidth="1.5"><path d="M1 8h14M5 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>,
       },
     ],
-    visual: (
-      <div className="flex flex-col gap-3">
-        {[
-          { unit: "Unit 2B · April rent", status: "Paid", statusColor: "#4ADE80", statusBg: "rgba(74,222,128,0.15)", key1: "Amount", val1: "GH₵1,500", val1Color: "#4ADE80", key2: "Method", val2: "MTN MoMo", key3: "Ref", val3: "RGH-00412", mono: true },
-          { unit: "Unit 1, Spintex · April", status: "Overdue", statusColor: "#FCA5A5", statusBg: "rgba(239,68,68,0.15)", key1: "Days late", val1: "14 days", val1Color: "#FCA5A5", key2: "Reminder sent", val2: "Yes — WhatsApp" },
-          { unit: "Apt A, Tema · April", status: "Due soon", statusColor: "#FCD34D", statusBg: "rgba(252,211,77,0.15)", key1: "Due in", val1: "2 days", val1Color: "#FCD34D" },
-        ].map((c) => (
-          <div key={c.unit} className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-sm font-medium text-white/80">{c.unit}</div>
-              <span className="text-xs font-semibold px-2 py-1 rounded-full" style={{ background: c.statusBg, color: c.statusColor }}>{c.status}</span>
-            </div>
-            {c.key1 && (
-              <div className="flex justify-between text-xs mb-1"><span className="text-white/40">{c.key1}</span><span style={{ color: c.val1Color || "rgba(255,255,255,0.7)", fontFamily: c.mono ? "monospace" : undefined }}>{c.val1}</span></div>
-            )}
-            {c.key2 && (
-              <div className="flex justify-between text-xs mb-1"><span className="text-white/40">{c.key2}</span><span className="text-white/70">{c.val2}</span></div>
-            )}
-            {c.key3 && (
-              <div className="flex justify-between text-xs"><span className="text-white/40">{c.key3}</span><span className="text-white/70">{c.val3}</span></div>
-            )}
+    mock: (
+      <>
+        <FvCard>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>Unit 2B · April rent</span>
+            <FvBadge color="#4ADE80" bg="rgba(74,222,128,0.15)">Paid</FvBadge>
           </div>
-        ))}
-      </div>
+          <FvRow label="Amount" value="GH₵1,500" valueStyle={{ color: "#4ADE80" }} />
+          <FvRow label="Method" value="MTN MoMo" />
+          <FvRow label="Ref" value="RGH-00412" valueStyle={{ fontFamily: "monospace", fontSize: 10 }} />
+        </FvCard>
+        <FvCard>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>Unit 1, Spintex · April</span>
+            <FvBadge color="#FCA5A5" bg="rgba(252,165,165,0.15)">Overdue</FvBadge>
+          </div>
+          <FvRow label="Days late" value="14 days" valueStyle={{ color: "#FCA5A5" }} />
+          <FvRow label="Reminder sent" value="Yes — WhatsApp" />
+        </FvCard>
+        <FvCard>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>Apt A, Tema · April</span>
+            <FvBadge color="#FCD34D" bg="rgba(252,211,77,0.15)">Due soon</FvBadge>
+          </div>
+          <FvRow label="Due in" value="2 days" valueStyle={{ color: "#FCD34D" }} />
+        </FvCard>
+      </>
     ),
     visualLabel: "Rent collection",
     visualTitle: "Every payment tracked automatically",
@@ -75,7 +104,7 @@ const tabs: Tab[] = [
     items: [
       {
         title: "Ghana-law lease templates",
-        desc: "Pre-built templates compliant with the Rent Act 1963 (Act 220). Every lease includes the legal advance rent cap notice — protecting both parties.",
+        desc: "Pre-built templates aligned with the Rent Act 1963 (Act 220). Every lease captures clear rent terms and responsibilities to protect both parties.",
         icon: <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="#C9933A" strokeWidth="1.5"><rect x="3" y="1" width="10" height="14" rx="1.5" /><path d="M6 5h4M6 8h4M6 11h2" strokeLinecap="round" /></svg>,
       },
       {
@@ -94,21 +123,21 @@ const tabs: Tab[] = [
         icon: <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="#C9933A" strokeWidth="1.5"><circle cx="8" cy="8" r="6" /><path d="M8 4v4l2.5 2.5" strokeLinecap="round" /></svg>,
       },
     ],
-    visual: (
-      <div className="rounded-xl p-5" style={{ background: "rgba(255,255,255,0.95)" }}>
-        <div className="text-xs font-bold mb-4" style={{ color: "#0B2239" }}>Residential Tenancy Agreement</div>
+    mock: (
+      <FvCard style={{ background: "rgba(255,255,255,0.95)" }}>
+        <div style={{ fontSize: 12, fontWeight: 700, color: "#0B2239", marginBottom: 8 }}>Residential Tenancy Agreement</div>
         {[
-          { k: "Landlord", v: "Kwame Asante" },
-          { k: "Tenant", v: "Kofi Mensah" },
-          { k: "Rent", v: "GH₵1,500/mo", vColor: "#15803D" },
-          { k: "Signed", v: "✓ 3 Apr 2026 · 9:47am", vColor: "#15803D" },
+          { k: "Landlord", v: "Kwame Asante", vc: "#0B2239" },
+          { k: "Tenant", v: "Kofi Mensah", vc: "#0B2239" },
+          { k: "Rent", v: "GH₵1,500/mo", vc: "#15803D" },
+          { k: "Signed", v: "✓ 3 Apr 2026 · 9:47am", vc: "#15803D" },
         ].map((r) => (
-          <div key={r.k} className="flex justify-between py-2 text-xs border-b last:border-0" style={{ borderColor: "#F3F4F6" }}>
-            <span style={{ color: "#6B7280" }}>{r.k}</span>
-            <span style={{ color: r.vColor || "#0B2239", fontWeight: 500 }}>{r.v}</span>
+          <div key={r.k} style={{ display: "flex", justifyContent: "space-between", padding: "6px 0", borderBottom: "1px solid #F3F4F6" }}>
+            <span style={{ fontSize: 11, color: "#6B7280" }}>{r.k}</span>
+            <span style={{ fontSize: 11, fontWeight: 600, color: r.vc }}>{r.v}</span>
           </div>
         ))}
-      </div>
+      </FvCard>
     ),
     visualLabel: "Digital leases",
     visualTitle: "Signed in minutes. Valid forever.",
@@ -139,23 +168,16 @@ const tabs: Tab[] = [
         icon: <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="#C9933A" strokeWidth="1.5"><circle cx="5.5" cy="5" r="2.5" /><circle cx="10.5" cy="5" r="2.5" /><path d="M1 13c0-2.2 2-3.5 4.5-3.5S10 10.8 10 13" strokeLinecap="round" /><path d="M10.5 9.5c2.5 0 4.5 1.3 4.5 3.5" strokeLinecap="round" /></svg>,
       },
     ],
-    visual: (
-      <div className="rounded-xl p-5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
-        <div className="text-xs font-bold uppercase tracking-[0.05em] mb-4" style={{ color: "rgba(255,255,255,0.6)" }}>Commission — April 2026</div>
-        {[
-          { k: "Kwame Asante · 10%", v: "GH₵1,050", vColor: "#4ADE80" },
-          { k: "Esi Boateng · 8%", v: "GH₵416", vColor: "#FCD34D" },
-        ].map((r) => (
-          <div key={r.k} className="flex justify-between py-2 text-xs border-b" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-            <span className="text-white/50">{r.k}</span>
-            <span style={{ color: r.vColor, fontWeight: 600 }}>{r.v}</span>
-          </div>
-        ))}
-        <div className="flex justify-between pt-3 text-sm font-semibold">
-          <span className="text-white/60">Total earned</span>
-          <span className="text-white">GH₵1,466</span>
+    mock: (
+      <FvCard>
+        <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.6)", marginBottom: 10 }}>Commission — April 2026</div>
+        <FvRow label="Kwame Asante · 10%" value="GH₵1,050" valueStyle={{ color: "#4ADE80" }} />
+        <FvRow label="Esi Boateng · 8%" value="GH₵416" valueStyle={{ color: "#FCD34D" }} />
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", marginTop: 4, paddingTop: 10, display: "flex", justifyContent: "space-between" }}>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>Total earned</span>
+          <span style={{ fontSize: 14, fontWeight: 700, color: "#fff" }}>GH₵1,466</span>
         </div>
-      </div>
+      </FvCard>
     ),
     visualLabel: "Agent tools",
     visualTitle: "Professional tools for serious agents",
@@ -186,34 +208,24 @@ const tabs: Tab[] = [
         icon: <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="#C9933A" strokeWidth="1.5"><rect x="3" y="1" width="10" height="14" rx="1.5" /><path d="M6 5h4M6 8h4M6 11h2" strokeLinecap="round" /></svg>,
       },
     ],
-    visual: (
-      <div className="flex flex-col gap-3">
-        {[
-          {
-            title: "Burst pipe · Unit 1C", badge: "Urgent", badgeColor: "#FCA5A5", badgeBg: "rgba(239,68,68,0.2)",
-            borderColor: "#EF4444",
-            rows: [{ k: "Status", v: "In progress · Agent notified", vColor: "#FCD34D" }, { k: "Escalates in", v: "1hr 23min", vColor: "#FCA5A5" }],
-          },
-          {
-            title: "No power · Unit 4, Spintex", badge: "High", badgeColor: "#FCD34D", badgeBg: "rgba(252,211,77,0.15)",
-            borderColor: "#FCD34D",
-            rows: [{ k: "Status", v: "Acknowledged", vColor: "#4ADE80" }],
-          },
-        ].map((c) => (
-          <div key={c.title} className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", borderLeft: `3px solid ${c.borderColor}` }}>
-            <div className="flex justify-between items-center mb-3">
-              <div className="text-sm font-medium text-white/80">{c.title}</div>
-              <span className="text-xs font-semibold px-2 py-1 rounded-full" style={{ background: c.badgeBg, color: c.badgeColor }}>{c.badge}</span>
-            </div>
-            {c.rows.map((r) => (
-              <div key={r.k} className="flex justify-between text-xs mb-1">
-                <span className="text-white/40">{r.k}</span>
-                <span style={{ color: r.vColor }}>{r.v}</span>
-              </div>
-            ))}
+    mock: (
+      <>
+        <FvCard style={{ borderLeft: "3px solid #EF4444", borderRadius: "0 8px 8px 0" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>Burst pipe · Unit 1C</span>
+            <FvBadge color="#FCA5A5" bg="rgba(239,68,68,0.2)">Urgent</FvBadge>
           </div>
-        ))}
-      </div>
+          <FvRow label="Status" value="In progress · Agent notified" valueStyle={{ color: "#FCD34D" }} />
+          <FvRow label="Escalates in" value="1hr 23min" valueStyle={{ color: "#FCA5A5" }} />
+        </FvCard>
+        <FvCard style={{ borderLeft: "3px solid #FCD34D", borderRadius: "0 8px 8px 0" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>No power · Unit 4, Spintex</span>
+            <FvBadge color="#FCD34D" bg="rgba(252,211,77,0.15)">High</FvBadge>
+          </div>
+          <FvRow label="Status" value="Acknowledged" valueStyle={{ color: "#4ADE80" }} />
+        </FvCard>
+      </>
     ),
     visualLabel: "Maintenance",
     visualTitle: "Issues tracked from filing to resolution",
@@ -226,78 +238,103 @@ export default function Features() {
   const tab = tabs.find((t) => t.id === activeTab)!;
 
   return (
-    <section id="features" className="py-[100px] px-12" style={{ background: "var(--cream)" }}>
-      <div className="max-w-[1200px] mx-auto">
+    <section id="features" className="px-12 py-[100px] max-[768px]:px-6" style={{ background: "var(--cream)" }}>
+      <div className="mx-auto max-w-[1200px]">
+
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="text-xs font-semibold uppercase tracking-[0.08em] mb-4" style={{ color: "var(--navy)" }}>
+        <div className="mb-16 text-center">
+          <div className="mb-4 text-[12px] font-semibold uppercase tracking-[0.1em]" style={{ color: "var(--gold)" }}>
             Features
           </div>
           <h2
-            className="text-[40px] font-normal leading-[1.2] mb-4"
-            style={{ fontFamily: "var(--font-dm-serif)", color: "var(--navy)" }}
+            className="mb-5 text-[clamp(34px,4vw,52px)] leading-[1.15] tracking-[-0.5px]"
+            style={{ fontFamily: "var(--font-dm-serif)", color: "var(--text)" }}
           >
             Everything a landlord<br />actually needs
           </h2>
-          <p className="text-base font-light max-w-[540px] mx-auto" style={{ color: "var(--text-mid)" }}>
-            Built specifically for Ghana — not a global tool adapted for Africa, but a platform designed from the ground
-            up for how property works here.
+          <p className="mx-auto max-w-[560px] text-[18px] font-light leading-[1.7]" style={{ color: "var(--text-mid)" }}>
+            Built specifically for Ghana — not a global tool adapted for Africa, but a platform designed from the ground up for how property works here.
           </p>
         </div>
 
-        {/* Tabs */}
-        <div
-          className="flex gap-1 p-1 rounded-xl mb-10 w-fit mx-auto"
-          style={{ background: "rgba(11,34,57,0.06)" }}
-        >
+        {/* Tabs — individual pill buttons */}
+        <div className="mb-12 flex flex-wrap justify-center gap-2">
           {tabs.map((t) => (
             <button
               key={t.id}
               onClick={() => setActiveTab(t.id)}
-              className="px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer border-0"
-              style={{
-                background: activeTab === t.id ? "var(--navy)" : "transparent",
-                color: activeTab === t.id ? "#fff" : "var(--text-mid)",
-              }}
+              className="feature-tab cursor-pointer rounded-full px-5 py-[9px] text-[13px] font-semibold transition-all duration-200"
+              style={
+                activeTab === t.id
+                  ? { background: "var(--navy)", color: "#fff", border: "1.5px solid var(--navy)" }
+                  : { background: "#fff", color: "var(--text-mid)", border: "1.5px solid var(--border)" }
+              }
             >
               {t.label}
             </button>
           ))}
         </div>
 
-        {/* Panel */}
-        <div
-          className="grid grid-cols-2 gap-12 p-10 rounded-2xl"
-          style={{ background: "var(--navy)" }}
-        >
-          {/* Feature list */}
-          <div className="flex flex-col gap-6">
+        {/* Panel: 2-col grid, feature list left, navy visual right */}
+        <div className="grid grid-cols-2 items-center gap-[60px] max-[768px]:grid-cols-1">
+
+          {/* Left: feature list */}
+          <div className="flex flex-col gap-5">
             {tab.items.map((item) => (
               <div key={item.title} className="flex items-start gap-4">
-                <GoldIcon>{item.icon}</GoldIcon>
+                <div
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px]"
+                  style={{ background: "var(--gold-pale)" }}
+                >
+                  {item.icon}
+                </div>
                 <div>
-                  <div className="text-sm font-semibold text-white mb-1">{item.title}</div>
-                  <div className="text-sm font-light leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-                    {item.desc}
-                  </div>
+                  <div className="mb-1 text-[15px] font-semibold" style={{ color: "var(--text)" }}>{item.title}</div>
+                  <div className="text-[13px] leading-[1.65]" style={{ color: "var(--text-mid)" }}>{item.desc}</div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Visual */}
-          <div className="flex flex-col gap-6 justify-between">
-            <div>{tab.visual}</div>
-            <div>
-              <div className="text-xs font-semibold uppercase tracking-[0.08em] mb-2" style={{ color: "var(--gold)" }}>
+          {/* Right: navy visual panel */}
+          <div
+            className="feature-visual relative overflow-hidden rounded-[20px] p-8"
+            style={{
+              background: "var(--navy)",
+              minHeight: 480,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-end",
+            }}
+          >
+            {/* Radial gradient overlay */}
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background: "radial-gradient(ellipse 60% 60% at 80% 20%, rgba(201,147,58,0.15) 0%, transparent 60%)",
+              }}
+            />
+
+            {/* Mock cards — absolute at top */}
+            <div className="absolute left-8 right-8 top-7">
+              {tab.mock}
+            </div>
+
+            {/* Label / title / sub — at bottom, above overlay */}
+            <div className="relative z-10">
+              <div className="mb-3 text-[11px] font-semibold uppercase tracking-[0.08em]" style={{ color: "var(--gold)" }}>
                 {tab.visualLabel}
               </div>
-              <div className="text-xl font-normal text-white mb-1" style={{ fontFamily: "var(--font-dm-serif)" }}>
+              <div
+                className="mb-2 text-[28px] leading-[1.2] text-white"
+                style={{ fontFamily: "var(--font-dm-serif)" }}
+              >
                 {tab.visualTitle}
               </div>
-              <div className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>{tab.visualSub}</div>
+              <div className="text-[14px]" style={{ color: "rgba(255,255,255,0.5)" }}>{tab.visualSub}</div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

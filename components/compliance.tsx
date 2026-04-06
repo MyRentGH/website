@@ -1,7 +1,7 @@
 const laws = [
   {
-    title: "Advance rent cap — 6 months maximum",
-    desc: "The Rent Act (Act 220) caps advance rent at 6 months. Every RentGH lease includes this notice, and the platform tracks advance payments to ensure compliance.",
+    title: "Clear rent terms from day one",
+    desc: "RentGH lease templates set expectations upfront and track all rent terms in one place, reducing misunderstandings for landlords, agents, and tenants.",
   },
   {
     title: "Legally valid digital signatures",

@@ -6,6 +6,8 @@ First, run the development server:
 
 ```bash
 npm run dev
+# or watcher alias
+npm run watch
 # or
 yarn dev
 # or

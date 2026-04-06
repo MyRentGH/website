@@ -1,10 +1,50 @@
+const unitStatus = [
+  { id: "1A", state: "Paid", cls: "bg-[#F0FDF4] border-[#86EFAC] text-[#15803D]" },
+  { id: "1B", state: "Paid", cls: "bg-[#F0FDF4] border-[#86EFAC] text-[#15803D]" },
+  { id: "1C", state: "7 days", cls: "bg-[#FEF2F2] border-[#FCA5A5] text-[#DC2626]" },
+  { id: "2A", state: "Due", cls: "bg-[#FFFBEB] border-[#FCD34D] text-[#D97706]" },
+  { id: "2B", state: "Paid", cls: "bg-[#F0FDF4] border-[#86EFAC] text-[#15803D]" },
+  { id: "2C", state: "Paid", cls: "bg-[#F0FDF4] border-[#86EFAC] text-[#15803D]" },
+  {
+    id: "3A",
+    state: "Vacant",
+    cls: "bg-[#F9FAFB] border-[#D1D5DB] text-[#9CA3AF] border-dashed",
+  },
+  { id: "S1", state: "14 days", cls: "bg-[#FEF2F2] border-[#FCA5A5] text-[#DC2626]" },
+];
+
+const activity = [
+  {
+    dot: "GH₵",
+    dotBg: "bg-[#DCFCE7]",
+    dotText: "text-[#15803D]",
+    text: "Rent paid · Unit 2, Spintex · MoMo",
+    amount: "+1,200",
+  },
+  {
+    dot: "!",
+    dotBg: "bg-[#FEE2E2]",
+    dotText: "text-[#DC2626]",
+    text: "Overdue · Unit 4 · 14 days late",
+  },
+  {
+    dot: "≡",
+    dotBg: "bg-[#DBEAFE]",
+    dotText: "text-[#1D4ED8]",
+    text: "Lease signed · Apt B · Tema House",
+  },
+];
+
+const stats = [
+  { num: "5.4M+", label: "Ghanaians renting" },
+  { num: "73K+", label: "Rent disputes in 2024" },
+  { num: "0", label: "Dedicated local platforms" },
+  { num: "Act 220", label: "Built for Ghana rentals" },
+];
+
 export default function Hero() {
   return (
-    <div
-      className="h-screen flex flex-col relative overflow-hidden"
-      style={{ background: "var(--navy)" }}
-    >
-      {/* Background gradients */}
+    <section className="relative flex min-h-screen flex-col overflow-hidden bg-[var(--navy)]">
       <div
         className="absolute inset-0"
         style={{
@@ -12,7 +52,6 @@ export default function Hero() {
             "radial-gradient(ellipse 60% 50% at 70% 40%, rgba(201,147,58,0.12) 0%, transparent 60%), radial-gradient(ellipse 40% 60% at 10% 80%, rgba(26,90,139,0.3) 0%, transparent 50%)",
         }}
       />
-      {/* Grid overlay */}
       <div
         className="absolute inset-0 opacity-[0.04]"
         style={{
@@ -22,214 +61,230 @@ export default function Hero() {
         }}
       />
 
-      {/* Main content — flex-1 + flex-col justify-center = vertical centering */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center w-full">
-        <div className="flex items-center gap-20 px-12 pt-[68px] pb-8 max-w-[1200px] mx-auto w-full">
-
-          {/* Left */}
-          <div className="flex-1 min-w-0">
-            <div
-              className="inline-flex items-center gap-2 rounded-full px-[14px] py-[5px] text-xs font-semibold uppercase tracking-[0.06em] mb-7"
-              style={{
-                background: "rgba(201,147,58,0.15)",
-                border: "1px solid rgba(201,147,58,0.3)",
-                color: "var(--gold-light)",
-              }}
-            >
-              <div className="w-[6px] h-[6px] rounded-full" style={{ background: "var(--gold)" }} />
-              Built for Ghana · Now live in Accra
-            </div>
-
-            <h1
-              className="text-[52px] leading-[1.1] font-normal text-white mb-5"
-              style={{ fontFamily: "var(--font-dm-serif)" }}
-            >
-              Collect rent.<br />
-              Manage leases.<br />
-              <em>Stay in control.</em>
-            </h1>
-
-            <p className="text-[16px] text-white/60 mb-8 max-w-[440px] font-light leading-relaxed">
-              RentGH replaces cash, WhatsApp, and notebooks with one platform —
-              for landlords, agents, and diaspora property owners across Ghana.
-            </p>
-
-            <div className="flex items-center gap-4 mb-8 flex-wrap">
-              <a href="#" className="btn-gold inline-flex items-center gap-2 px-6 py-[13px] rounded-[10px] text-[15px] font-semibold no-underline">
-                Start managing free
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-              <a href="#how" className="btn-secondary-white inline-flex items-center gap-2 px-6 py-[13px] rounded-[10px] text-[15px] font-semibold no-underline">
-                See how it works
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-            </div>
-
-            <div className="flex items-center gap-5 flex-wrap">
-              {["MoMo, card & bank payments", "Ghana Rent Act compliant", "Secured by Paystack"].map((text) => (
-                <div key={text} className="flex items-center gap-2 text-[12px]" style={{ color: "var(--text-light)" }}>
-                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M8 1l2 4 4.5.65-3.25 3.17.77 4.48L8 11.1l-4.02 2.2.77-4.48L1.5 5.65 6 5l2-4z" />
-                  </svg>
-                  {text}
-                </div>
-              ))}
-            </div>
+      <div className="relative z-[2] mx-auto flex w-full max-w-[1200px] flex-1 items-center gap-20 px-12 pb-20 pt-[120px] max-[900px]:flex-col max-[900px]:gap-12 max-[900px]:px-6 max-[900px]:pb-[60px] max-[900px]:pt-[100px]">
+        <div className="flex-1">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[rgba(201,147,58,0.3)] bg-[rgba(201,147,58,0.15)] px-[14px] py-[5px] text-[12px] font-semibold uppercase tracking-[0.06em] text-[var(--gold-light)]">
+            <span className="h-[6px] w-[6px] rounded-full bg-[var(--gold)]" />
+            Built for Ghana · Launching Soon
           </div>
 
-          {/* Right — dashboard mockup */}
-          <div className="flex-1 flex justify-end">
-            {/* Inner relative wrapper — pills positioned relative to this box */}
-            <div className="relative mt-4 mb-4">
+          <h1
+            className="mb-6 text-[clamp(44px,5vw,68px)] leading-[1.1] tracking-[-1px] text-white"
+            style={{ fontFamily: "var(--font-dm-serif)" }}
+          >
+            Collect rent.
+            <br />
+            Manage leases.
+            <br />
+            <span className="text-[var(--gold)]">Stay in control.</span>
+          </h1>
 
-              {/* Top pill */}
-              <div
-                className="absolute -top-4 -left-6 z-10 flex items-center gap-3 px-4 py-2.5 rounded-2xl shadow-xl"
-                style={{ background: "var(--navy-mid)", border: "1px solid rgba(255,255,255,0.1)" }}
-              >
-                <div className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "#DCFCE7" }}>
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#15803D" strokeWidth="1.8">
-                    <path d="M3 8l4 4 6-7" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-white leading-tight">GH₵1,500 paid</div>
-                  <div className="text-[11px]" style={{ color: "var(--text-light)" }}>Unit 2B · Just now</div>
-                </div>
-              </div>
+          <p className="mb-10 max-w-[520px] text-[18px] font-light leading-[1.7] text-white/60">
+            RentGH replaces cash, WhatsApp, and paperwork with one platform, built for
+            landlords, tenants, agents, and diaspora property owners across Ghana.
+          </p>
 
-              {/* Dashboard card */}
-              <div
-                className="w-[380px] rounded-2xl overflow-hidden shadow-2xl"
-                style={{ background: "var(--navy-mid)", border: "1px solid rgba(255,255,255,0.1)" }}
+          <div className="mb-14 flex items-center gap-4 max-[720px]:flex-col max-[720px]:items-stretch">
+            <a
+              href="#"
+              className="inline-flex items-center gap-2 rounded-[10px] bg-[var(--gold)] px-7 py-[14px] text-[15px] font-semibold text-[var(--navy)] no-underline transition-all duration-200 hover:bg-[var(--gold-light)] hover:-translate-y-px max-[720px]:justify-center"
+            >
+              Start managing free
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
               >
-                {/* Top bar */}
-                <div
-                  className="flex items-center justify-between px-4 py-3"
-                  style={{ background: "rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </a>
+            <a
+              href="#how"
+              className="inline-flex items-center gap-2 text-[15px] font-medium text-white/75 no-underline transition-colors duration-200 hover:text-white max-[720px]:justify-center"
+            >
+              See how it works
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/10 pt-6">
+            <div className="inline-flex items-center gap-2 text-[13px] text-white/50">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="shrink-0 text-[var(--gold)]">
+                <path d="M8 1l2 4 4.5.65-3.25 3.17.77 4.48L8 11.1l-4.02 2.2.77-4.48L1.5 5.65 6 5l2-4z" />
+              </svg>
+              MoMo, card &amp; bank payments
+            </div>
+            <div className="inline-flex items-center gap-2 text-[13px] text-white/50">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="shrink-0 text-[var(--gold)]">
+                <rect x="3" y="7" width="10" height="8" rx="1.5" />
+                <path d="M5 7V5a3 3 0 016 0v2" />
+              </svg>
+              Automated reminders and arrears alerts
+            </div>
+            <div className="inline-flex items-center gap-2 text-[13px] text-white/50">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="shrink-0 text-[var(--gold)]">
+                <path d="M8 1l2 4 4.5.65-3.25 3.17.77 4.48L8 11.1l-4.02 2.2.77-4.48L1.5 5.65 6 5l2-4z" />
+              </svg>
+              Digital lease and payment records
+            </div>
+          </div>
+        </div>
+
+        <div className="relative w-[460px] shrink-0 max-[900px]:w-full max-[900px]:max-w-[560px]">
+          <div className="absolute right-[-30px] top-[-20px] z-10 flex items-center gap-3 rounded-xl bg-white px-[14px] py-[10px] shadow-[0_8px_30px_rgba(0,0,0,0.2)] max-[900px]:static max-[900px]:mb-3 max-[900px]:ml-auto max-[900px]:w-fit">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#DCFCE7]">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="#15803D"
+                  strokeWidth="1.8"
                 >
-                  <span className="text-sm font-semibold text-white" style={{ fontFamily: "var(--font-dm-serif)" }}>
-                    Rent<span style={{ color: "var(--gold)" }}>GH</span>
-                  </span>
-                  <div className="flex gap-1.5">
-                    {["#EF4444", "#F59E0B", "#22C55E"].map((c) => (
-                      <div key={c} className="w-3 h-3 rounded-full" style={{ background: c }} />
-                    ))}
-                  </div>
-                </div>
-
-                <div className="p-4">
-                  {/* Stats row */}
-                  <div className="grid grid-cols-3 gap-2.5 mb-4">
-                    {[
-                      { val: "GH₵18.5K", lbl: "Collected Apr" },
-                      { val: "3",        lbl: "Overdue units", red: true },
-                      { val: "87%",      lbl: "Occupancy" },
-                    ].map((s) => (
-                      <div key={s.lbl} className="rounded-xl p-3 text-center" style={{ background: "rgba(255,255,255,0.05)" }}>
-                        <div className="text-sm font-bold mb-0.5" style={{ color: s.red ? "#DC2626" : "#fff" }}>{s.val}</div>
-                        <div className="text-[10px]" style={{ color: "var(--text-light)" }}>{s.lbl}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Unit grid */}
-                  <div className="text-[10px] font-bold uppercase tracking-[0.05em] mb-2" style={{ color: "#9CA3AF" }}>
-                    Unit status
-                  </div>
-                  <div className="grid grid-cols-4 gap-1.5 mb-4">
-                    {[
-                      { id: "1A", status: "Paid",    bg: "#DCFCE7",               tc: "#15803D" },
-                      { id: "1B", status: "Paid",    bg: "#DCFCE7",               tc: "#15803D" },
-                      { id: "1C", status: "7 days",  bg: "#FEE2E2",               tc: "#DC2626" },
-                      { id: "2A", status: "Due",     bg: "#FEF9C3",               tc: "#92400E" },
-                      { id: "2B", status: "Paid",    bg: "#DCFCE7",               tc: "#15803D" },
-                      { id: "2C", status: "Paid",    bg: "#DCFCE7",               tc: "#15803D" },
-                      { id: "3A", status: "Vacant",  bg: "rgba(255,255,255,0.08)", tc: "#9CA3AF" },
-                      { id: "S1", status: "14 days", bg: "#FEE2E2",               tc: "#DC2626" },
-                    ].map((u) => (
-                      <div key={u.id} className="rounded-lg p-2 text-center" style={{ background: u.bg }}>
-                        <div className="text-[11px] font-bold" style={{ color: u.tc }}>{u.id}</div>
-                        <div className="text-[9px]" style={{ color: u.tc, opacity: 0.8 }}>{u.status}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Activity */}
-                  <div className="flex flex-col gap-2">
-                    {[
-                      { dot: "GH₵", bg: "#DCFCE7", tc: "#15803D", text: "Rent paid · Unit 2, Spintex · MoMo", amt: "+1,200" },
-                      { dot: "!",   bg: "#FEE2E2", tc: "#DC2626", text: "Overdue · Unit 4 · 14 days late" },
-                      { dot: "≡",   bg: "#DBEAFE", tc: "#1D4ED8", text: "Lease signed · Apt B · Tema House" },
-                    ].map((a, i) => (
-                      <div key={i} className="flex items-center gap-2.5">
-                        <div className="w-6 h-6 rounded-lg flex items-center justify-center text-[9px] font-bold flex-shrink-0" style={{ background: a.bg, color: a.tc }}>
-                          {a.dot}
-                        </div>
-                        <div className="text-[11px] flex-1 text-white/60 truncate">{a.text}</div>
-                        {a.amt && <div className="text-[11px] font-semibold" style={{ color: "#4ADE80" }}>{a.amt}</div>}
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                  <path
+                    d="M3 8l4 4 6-7"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
-
-              {/* Bottom pill */}
-              <div
-                className="absolute -bottom-4 -right-6 z-10 flex items-center gap-3 px-4 py-2.5 rounded-2xl shadow-xl"
-                style={{ background: "var(--navy-mid)", border: "1px solid rgba(255,255,255,0.1)" }}
-              >
-                <div className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "#EDE9FE" }}>
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#6D28D9" strokeWidth="1.5">
-                    <circle cx="8" cy="5" r="3" />
-                    <path d="M2 14c0-3.314 2.686-5 6-5s6 1.686 6 5" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-white leading-tight">Kweku Mensah</div>
-                  <div className="text-[11px]" style={{ color: "var(--text-light)" }}>Agent · 12 units managed</div>
-                </div>
+              <div>
+                <div className="text-[14px] font-bold text-[var(--navy)]">GH₵1,500 paid</div>
+                <div className="text-[10px] text-[#9CA3AF]">Unit 2B · Just now</div>
               </div>
-
             </div>
-          </div>
 
+            <div
+              className="dashboard-mockup overflow-hidden rounded-[16px] bg-white shadow-[0_40px_100px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.08)]"
+            >
+              <div className="flex items-center justify-between bg-[var(--navy)] px-4 py-3">
+                <span
+                  className="text-[16px] text-white"
+                  style={{ fontFamily: "var(--font-dm-serif)" }}
+                >
+                  Rent<span className="text-[var(--gold)]">GH</span>
+                </span>
+                <div className="flex gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-[#EF4444]" />
+                  <span className="h-2 w-2 rounded-full bg-[#F59E0B]" />
+                  <span className="h-2 w-2 rounded-full bg-[#22C55E]" />
+                </div>
+              </div>
+
+              <div className="bg-[#F4F6F8] p-4">
+                <div className="mb-3 grid grid-cols-3 gap-2">
+                  {[
+                    { val: "GH₵18.5K", lbl: "Collected Apr", valClass: "text-[var(--navy)]" },
+                    { val: "3", lbl: "Overdue units", valClass: "text-[#DC2626]" },
+                    { val: "87%", lbl: "Occupancy", valClass: "text-[var(--navy)]" },
+                  ].map((item) => (
+                    <div key={item.lbl} className="rounded-lg bg-white p-3">
+                      <div className={`text-[18px] font-bold leading-none ${item.valClass}`}>
+                        {item.val}
+                      </div>
+                      <div className="mt-0.5 text-[10px] text-[#9CA3AF]">{item.lbl}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.05em] text-[#9CA3AF]">
+                  Unit status
+                </div>
+
+                <div className="mb-3 grid grid-cols-4 gap-[6px]">
+                  {unitStatus.map((unit) => (
+                    <div key={unit.id} className={`rounded-[6px] border p-2 ${unit.cls}`}>
+                      <div className="text-[9px] font-bold leading-none">{unit.id}</div>
+                      <div className="mt-[3px] text-[9px]">{unit.state}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="rounded-lg bg-white p-2.5">
+                  {activity.map((item, index) => (
+                    <div
+                      key={item.text}
+                      className="flex items-center gap-2 border-b border-[#F3F4F6] py-[5px] last:border-b-0"
+                    >
+                      <div
+                        className={`flex h-6 w-6 items-center justify-center rounded-full text-[8px] font-bold ${item.dotBg} ${item.dotText}`}
+                      >
+                        {item.dot}
+                      </div>
+                      <div className="flex-1 text-[10px] text-[#374151]">{item.text}</div>
+                      {index === 0 && (
+                        <div className="text-[10px] font-bold text-[#15803D]">{item.amount}</div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute bottom-10 left-[-40px] z-10 flex items-center gap-3 rounded-xl bg-white px-[14px] py-[10px] shadow-[0_8px_30px_rgba(0,0,0,0.2)] max-[900px]:static max-[900px]:mt-3 max-[900px]:w-fit">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#EDE9FE]">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="#6D28D9"
+                  strokeWidth="1.5"
+                >
+                  <circle cx="8" cy="5" r="3" />
+                  <path d="M2 14c0-3.314 2.686-5 6-5s6 1.686 6 5" />
+                </svg>
+              </div>
+              <div>
+                <div className="text-[14px] font-bold text-[var(--navy)]">Kweku Mensah</div>
+                <div className="text-[10px] text-[#9CA3AF]">Agent · 12 units managed</div>
+              </div>
+          </div>
         </div>
       </div>
 
-      {/* Stats bar */}
-      <div
-        className="relative z-10 flex items-center justify-center px-12 py-6"
-        style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
-      >
-        {[
-          { num: "5.4M+",   label: "Ghanaians renting" },
-          { num: "73K+",    label: "Rent disputes in 2024" },
-          { num: "0",       label: "Dedicated local platforms" },
-          { num: "Act 220", label: "Ghana Rent Act compliant" },
-        ].map((stat, i) => (
-          <div key={stat.num} className="flex items-center">
-            <div className="text-center" style={{ padding: "0 40px" }}>
-              <div
-                className="text-xl font-bold mb-1"
-                style={{ fontFamily: "var(--font-dm-serif)", color: "var(--gold)" }}
-              >
-                {stat.num}
+      <div className="relative z-[2] border-t border-white/[0.08] bg-white/[0.03] px-12 py-6 max-[900px]:px-4">
+        <div className="mx-auto flex w-full max-w-[1200px] items-center justify-center gap-16 max-[900px]:grid max-[900px]:grid-cols-2 max-[900px]:gap-6">
+          {stats.map((stat, index) => (
+            <div key={stat.num} className="flex items-center">
+              <div className="px-10 text-center max-[900px]:px-2">
+                <div
+                  className="text-[32px] leading-none text-white"
+                  style={{ fontFamily: "var(--font-dm-serif)" }}
+                >
+                  {stat.num}
+                </div>
+                <div className="mt-2 text-[12px] font-medium uppercase tracking-[0.06em] text-white/40">
+                  {stat.label}
+                </div>
               </div>
-              <div className="text-xs" style={{ color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>
-                {stat.label}
-              </div>
+              {index < stats.length - 1 && (
+                <div className="h-10 w-px bg-white/10 max-[900px]:hidden" />
+              )}
             </div>
-            {i < 3 && (
-              <div className="w-px h-8 flex-shrink-0" style={{ background: "rgba(255,255,255,0.15)" }} />
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

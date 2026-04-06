@@ -1,0 +1,23 @@
+<svg width="1200" height="320" viewBox="0 0 1200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="20" y1="20" x2="260" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12314F"/>
+      <stop offset="1" stop-color="#0B2239"/>
+    </linearGradient>
+    <linearGradient id="roof" x1="72" y1="54" x2="208" y2="146" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8B96A"/>
+      <stop offset="1" stop-color="#C9933A"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="20" y="20" width="240" height="240" rx="56" fill="url(#bg)"/>
+  <rect x="38" y="38" width="204" height="204" rx="44" stroke="rgba(255,255,255,0.10)" stroke-width="2"/>
+  <path d="M72 146L140 86L208 146H188L140 104L92 146H72Z" fill="url(#roof)"/>
+  <rect x="94" y="146" width="92" height="76" rx="12" fill="#FFFFFF"/>
+  <rect x="128" y="170" width="24" height="52" rx="6" fill="#C9933A"/>
+
+  <text x="300" y="154" fill="#0B2239" font-family="'DM Serif Display', Georgia, serif" font-size="132" letter-spacing="-2">Rent</text>
+  <text x="575" y="154" fill="#C9933A" font-family="'DM Serif Display', Georgia, serif" font-size="132" letter-spacing="-2">GH</text>
+
+  <text x="305" y="206" fill="#4A6278" font-family="'DM Sans', Arial, sans-serif" font-size="36" letter-spacing="3">PROPERTY MANAGEMENT PLATFORM</text>
+</svg>
